@@ -3,13 +3,15 @@ import os
 import re
 from playwright.sync_api import sync_playwright
 
-# --- PLAYWRIGHT INSTALLATION WORKAROUND FOR STREAMLIT CLOUD ---
+# --- STREAMLIT CLOUD INSTALLATION WORKAROUND ---
 @st.cache_resource
 def install_playwright():
+    # We only install the browser binary here. 
+    # packages.txt handles the system dependencies!
     os.system("playwright install chromium")
-    os.system("playwright install-deps chromium")
 
 install_playwright()
+# -----------------------------------------------
 # --------------------------------------------------------------
 
 # ... (the rest of your workflow code starts here) ...
