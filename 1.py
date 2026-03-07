@@ -3,6 +3,16 @@ import os
 import re
 from playwright.sync_api import sync_playwright
 
+# --- PLAYWRIGHT INSTALLATION WORKAROUND FOR STREAMLIT CLOUD ---
+@st.cache_resource
+def install_playwright():
+    os.system("playwright install chromium")
+    os.system("playwright install-deps chromium")
+
+install_playwright()
+# --------------------------------------------------------------
+
+# ... (the rest of your workflow code starts here) ...
 def log_step(message):
     print(f"🤖 LOG: {message}")
     st.toast(message)
@@ -10,7 +20,7 @@ def log_step(message):
 
 def run_automation(account_name, location_name, job_id):
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch(headless=True)
 
         if os.path.exists("state.json"):
             context = browser.new_context(storage_state="state.json")
