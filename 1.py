@@ -434,16 +434,17 @@ def run_automation(account_name, location_name, job_id):
             # sf_page.get_by_role("cell", name="IQR").first.click()
             # sf_page.wait_for_timeout(2000)
             sf_page.get_by_role("combobox").select_option("1018847904")
-            sf_page.wait_for_timeout(20000)
+            log_step("Updated Service Fusion Job Status to Invoiced")
+            sf_page.wait_for_timeout(2000)
 
             # sf_page.get_by_role("button", name="Only This Job").click()
             # log_step("21")
             # sf_page.get_by_role("link", name="Jobs", exact=True).click()
             # log_step("22")
 
-            sf_page.get_by_role("link", name="IQR").click()
-            log_step("23")
-            sf_page.wait_for_timeout(10000)
+            # sf_page.get_by_role("link", name="IQR").click()
+            # log_step("23")
+            # sf_page.wait_for_timeout(2000)
 
             return True, f"✅ Processed {len(qualifying_forms)} form(s) and updated Service Fusion for Job ID: {job_id}"
 
