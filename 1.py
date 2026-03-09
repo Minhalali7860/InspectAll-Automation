@@ -445,6 +445,10 @@ def run_automation(account_name, location_name, job_id):
             # sf_page.get_by_role("link", name="IQR").click()
             # log_step("23")
             # sf_page.wait_for_timeout(2000)
+            only_this_job_button = sf_page.get_by_role("button", name="Only This Job")
+            if only_this_job_button.is_visible():
+                only_this_job_button.click()
+            sf_page.wait_for_timeout(3000)
 
             return True, f"✅ Processed {len(qualifying_forms)} form(s) and updated Service Fusion for Job ID: {job_id}"
 
